@@ -1,0 +1,31 @@
+{
+  "name": "file-similarity",
+  "version": "0.0.0",
+  "description": "Report similar files within a project",
+  "main": "cjs/index.js",
+  "module": "esm/index.js",
+  "types": "types",
+  "bin": {
+    "file-similarity": "./bin/file-similarity"
+  },
+  "author": "Drew Petersen <kirbysayshi@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "test": "web-scripts test",
+    "lint": "web-scripts lint",
+    "build": "web-scripts build",
+    "commit": "web-scripts commit",
+    "release": "web-scripts release"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "web-scripts commitmsg",
+      "pre-commit": "web-scripts precommit"
+    }
+  },
+  "devDependencies": {
+    "@spotify/web-scripts": "^1.1.4",
+    "husky": "^3.0.0"
+  }
+}
