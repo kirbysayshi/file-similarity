@@ -1,2 +1,1 @@
-export { FileSimilarityOptions } from './types';
-export { fileSimilarity } from './file-similarity';
+export { fileSimilarity, FileSimilarityOptions } from './file-similarity';

@@ -1,28 +1,37 @@
 import * as fs from 'fs';
 import * as path from 'path';
 
-import { FileSimilarityOptions } from './types';
-import { fileSimilarity } from './file-similarity';
+import { fileSimilarity, FileSimilarityOptions } from './file-similarity';
 
-type CLIProcess = Pick<NodeJS.Process, 'stdout' | 'stderr' | 'argv' | 'exit'>;
+type CLIProcess = Pick<NodeJS.Process, 'env' | 'stdout' | 'stderr' | 'argv' | 'exit'>;
 
 export async function run(process: CLIProcess) {
   const argv = process.argv.slice(2);
   const args = parseArgv(argv);
+  process.env.NODE_ENV === 'debug' && console.time('similarity');
   const result = await fileSimilarity(args);
+  process.env.NODE_ENV === 'debug' && console.timeEnd('similarity');
 
-  // TODO: The results can get quite large given that it's basically a
-  // cartesian join. An alternative is to either: use JSONStream to stream
-  // an array out, OR to change the output format to newline-delimited JSON
-  // instead of an array. jq handles this fine, so perhaps it's the way to go.
+  // The output is quite large, and can result in bottlenecks in both
+  // the final array size as well as JSON.stringify / console.log.
+  // Alternative is to:
+  // - use a file database
+  // - JSONStream
+  // - log newline-delimited JSON, which jq handles nicely. Other tools not so
 
+  process.env.NODE_ENV === 'debug' && console.time('stringify');
   const output = JSON.stringify(result);
+  process.env.NODE_ENV === 'debug' && console.timeEnd('stringify');
 
   if (args.output === null) {
+    process.env.NODE_ENV === 'debug' && console.time('stdoutwrite');
     process.stdout.write(output);
+    process.env.NODE_ENV === 'debug' && console.timeEnd('stdoutwrite');
   } else {
+    process.env.NODE_ENV === 'debug' && console.time('filewrite');
     const filePath = path.join(args.root, args.output);
     fs.writeFileSync(filePath, output, 'utf8');
+    process.env.NODE_ENV === 'debug' && console.timeEnd('filewrite');
   }
 
   process.exit(0);

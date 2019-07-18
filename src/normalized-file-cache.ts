@@ -2,7 +2,7 @@ import { normalizeFile } from "./normalize-file";
 import { FilePath } from "./types";
 
 export class NormalizedFileCache {
-  cache = new Map<FilePath, string[]>();
+  constructor(private cache = new Map<FilePath, string[]>()){}
   async get(key: FilePath) {
     if (this.cache.has(key)) {
       return this.cache.get(key);
