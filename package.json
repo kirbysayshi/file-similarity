@@ -12,6 +12,7 @@
   "license": "MIT",
   "private": false,
   "scripts": {
+    "prepublishOnly": "web-scripts build",
     "test": "web-scripts test",
     "lint": "web-scripts lint",
     "build": "web-scripts build",
