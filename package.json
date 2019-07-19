@@ -1,22 +1,22 @@
 {
-  "name": "file-similarity",
+  "name": "simfiles",
   "version": "0.0.0",
   "description": "Report similar files within a project",
   "main": "cjs/index.js",
   "module": "esm/index.js",
   "types": "types",
   "bin": {
-    "file-similarity": "./bin/file-similarity"
+    "simfiles": "./bin/simfiles"
   },
   "author": "Drew Petersen <kirbysayshi@gmail.com>",
   "license": "MIT",
   "private": false,
   "scripts": {
+    "prepublishOnly": "web-scripts build",
     "test": "web-scripts test",
     "lint": "web-scripts lint",
     "build": "web-scripts build",
-    "commit": "web-scripts commit",
-    "release": "web-scripts release"
+    "commit": "web-scripts commit"
   },
   "husky": {
     "hooks": {

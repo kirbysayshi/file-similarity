@@ -1,4 +1,4 @@
-file-similarity
+simfiles
 ==============
 
 Score files within a directory based on how similar their contents are. Works as a CLI tool or library! Uses an algorithm similar to [`comm`](https://linux.die.net/man/1/comm) for [speed](#speed).
@@ -11,11 +11,11 @@ Usage (library)
 -----------
 
 ```sh
-yarn add file-similarity
+yarn add simfiles
 ```
 
 ```js
-import { fileSimilarity } from 'file-similarity';
+import { fileSimilarity } from 'simfiles';
 const opts = {
   root: process.cwd(),
   ext: ['js', 'ts'].
@@ -29,10 +29,10 @@ Usage (CLI)
 -----
 
 ```sh
-$ npx file-similarity --help
+$ npx simfiles --help
 Determine which files within your project are most similar (or exactly!)
 Usage
-  $ file-similarity [options]
+  $ simfiles [options]
 Global Options
   --root                          Use this directory as root for globs and files
                                     (current: )
@@ -51,7 +51,7 @@ Some example output using the [react](https://github.com/facebook/react/) codeba
 $ git clone git@github.com:facebook/react.git
 Cloning into 'react'...
 $ cd react/packages/react/src
-$ npx file-similarity --output similarity.json
+$ npx simfiles --output similarity.json
 $ jq . ./similarity.json | head -20
 [
   {
@@ -115,7 +115,7 @@ This library uses a string comparison algorithm that relies on the input being s
 
 ```sh
 # Using react's git repo: https://github.com/facebook/react/
-time npx file-similarity --output similarity.json
+time npx simfiles --output similarity.json
 
 real	0m56.109s
 user	0m45.827s

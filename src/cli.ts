@@ -1,3 +1,6 @@
+/* eslint-disable no-unused-expressions */
+/* eslint-disable no-console */
+
 import * as fs from 'fs';
 import * as path from 'path';
 
@@ -91,7 +94,7 @@ Global Options
 
   if (argv.indexOf('--help') > -1) {
     console.error(help);
-    process.exit(1);
+    process.exit(0);
   }
 
   return args;

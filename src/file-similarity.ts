@@ -1,3 +1,5 @@
+/* eslint-disable no-nested-ternary */
+
 import * as path from 'path';
 import { findFiles } from './find-files';
 import { linePercentages, FileLineSimilarity } from './line-percentages';
@@ -27,8 +29,8 @@ export async function fileSimilarity(
   // Create absolute paths so the rest of the code does not need to know about
   // working directory vs root. We later remove them after computing simlarity.
   const absoluteFiles = files.map(f => path.join(options.root, f));
-  const result = await linePercentages(absoluteFiles);
-  const relativeResult = result.map(result => ({
+  const results = await linePercentages(absoluteFiles);
+  const relativeResult = results.map(result => ({
     ...result,
     filePath0: path.relative(options.root, result.filePath0),
     filePath1: path.relative(options.root, result.filePath1),
