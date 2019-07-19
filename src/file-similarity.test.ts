@@ -1,8 +1,8 @@
-import { default as MockFS } from 'mock-fs';
+import { default as mockFS } from 'mock-fs';
 import { fileSimilarity, FileSimilarityOptions } from './file-similarity';
 
 test(`relative paths are resolved absolutely, but final output is relative`, async () => {
-  MockFS({
+  mockFS({
     '/does/not/exist/file1.js': 'line1',
     '/does/not/exist/file2.js': 'line1\nline2',
     '/does/not/exist/file3.js': 'line1\nline2\nline3',
@@ -20,7 +20,7 @@ test(`relative paths are resolved absolutely, but final output is relative`, asy
 
   // Need to restore the FS mock before jest attempts to load modules
   // necessary for the snapshot!
-  MockFS.restore();
+  mockFS.restore();
   expect(results[0].filePath0).not.toMatch('/does/not/exist/');
   expect(results).toMatchInlineSnapshot(`
     Array [

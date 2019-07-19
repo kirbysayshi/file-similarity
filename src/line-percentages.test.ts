@@ -1,4 +1,4 @@
-import { default as MockFS } from 'mock-fs';
+import { default as mockFS } from 'mock-fs';
 import { linePercentages } from './line-percentages';
 
 test(`
@@ -10,9 +10,9 @@ test(`
     '/fake/root/file2.js': 'line1\nline2',
   }
 
-  MockFS(files);
+  mockFS(files);
   const percentages = await linePercentages(Object.keys(files));
-  MockFS.restore();
+  mockFS.restore();
   expect(percentages).toMatchInlineSnapshot(`
             Array [
               Object {
@@ -34,9 +34,9 @@ test(`
     '/fake/root/file1.js': 'line1\nline2',
     '/fake/root/file2.js': 'line1\nline3',
   }
-  MockFS(files);
+  mockFS(files);
   const percentages = await linePercentages(Object.keys(files));
-  MockFS.restore();
+  mockFS.restore();
   expect(percentages).toMatchInlineSnapshot(`
         Array [
           Object {
@@ -59,9 +59,9 @@ test(`
     '/fake/root/file1.js': 'line2\n    \nline1',
     '/fake/root/file2.js': 'line1\nline3',
   }
-  MockFS(files);
+  mockFS(files);
   const percentages = await linePercentages(Object.keys(files));
-  MockFS.restore();
+  mockFS.restore();
   expect(percentages).toMatchInlineSnapshot(`
     Array [
       Object {

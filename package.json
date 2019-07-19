@@ -15,8 +15,7 @@
     "test": "web-scripts test",
     "lint": "web-scripts lint",
     "build": "web-scripts build",
-    "commit": "web-scripts commit",
-    "release": "web-scripts release"
+    "commit": "web-scripts commit"
   },
   "husky": {
     "hooks": {
