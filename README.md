@@ -5,7 +5,7 @@ Score files within a directory based on how similar their contents are. Works as
 
 Use this tool to determine where, in your large code base, there might be excessive duplication of code.
 
-Scores are between `0` (no lines match between the files) and `1` (lines, after normalization, completely match). When comparing files, this tool normalized the lines by trimming whitespace, removing empty lines, and sorting. This means that two files _could_ receive a score of `1` (completely equal) but have differing whitespace or line order. Generally this isn't a problem.
+Scores are between `0` (no lines match between the files) and `1` (lines, after normalization, completely match). When comparing files, this tool normalizes each line by trimming whitespace, removing empty lines, and sorting. This means that two files _could_ receive a score of `1` (completely equal) but have differing whitespace or line order. Generally this isn't a problem.
 
 Usage (library)
 -----------
