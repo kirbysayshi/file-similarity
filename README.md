@@ -1,7 +1,7 @@
 simfiles
 ==============
 
-Score files within a directory based on how similar their contents are. Works as a CLI tool or library! Uses an algorithm similar to [`comm`](https://linux.die.net/man/1/comm) for [speed](#speed).
+Score files within a folder based on the similarity of their contents. Works as a CLI tool or library! Uses an algorithm similar to [`comm`](https://linux.die.net/man/1/comm) for [speed](#speed).
 
 Use this tool to determine where, in your large code base, there might be excessive duplication of code.
 

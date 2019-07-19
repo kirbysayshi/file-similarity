@@ -1,7 +1,7 @@
 {
   "name": "simfiles",
   "version": "0.0.0",
-  "description": "Report similar files within a project",
+  "description": "Score files within a folder based on the similarity of their contents",
   "main": "cjs/index.js",
   "module": "esm/index.js",
   "types": "types",
