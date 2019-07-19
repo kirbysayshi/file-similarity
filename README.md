@@ -1,27 +1,24 @@
 file-similarity
 ==============
 
-Score files within a directory based on how similar their contents are. Works as a CLI tool or library! Uses an algorithm similar to [`comm`](https://linux.die.net/man/1/comm) for speed, which is drastically faster than the commonly used [Levenshtein distance](https://en.wikipedia.org/wiki/Levenshtein_distance).
-
-```sh
-time npx file-similarity --output similarity.json
-
-real	0m56.109s
-user	0m45.827s
-sys	0m1.381s
-```
+Score files within a directory based on how similar their contents are. Works as a CLI tool or library! Uses an algorithm similar to [`comm`](https://linux.die.net/man/1/comm) for [speed](#speed).
 
 Usage (library)
 -----------
 
 ```sh
 yarn add file-similarity
-# or
-npm --save file-similarity
 ```
 
 ```js
 import { fileSimilarity } from 'file-similarity';
+const opts = {
+  root: process.cwd(),
+  ext: ['js', 'ts'].
+  ignore: ['**/node_modules/*'],
+  output: null,
+};
+const result = await fileSimilarity(opts);
 ```
 
 Usage (CLI)
@@ -74,7 +71,7 @@ $ jq . ./similarity.json | head -20
     "filePath1": "ReactSharedInternals.js",
 ```
 
-Wiewing the Output
+Viewing the Output
 --------------------
 
 The output file is just JSON, so it can be queried using something like [`jq`](https://stedolan.github.io/jq/) (or you could write a script).
@@ -105,6 +102,20 @@ jq '[.[] | select(.score > 0.75)] | length' similarity.json
 total=$(jq '. | length' similarity.json); \
 morethan=$(jq '[.[] | select(.score > 0.75)] | length' similarity.json); \
 echo "scale=5 ; $morethan / $total" | bc
+```
+
+Speed <a name="speed">
+-----
+
+This library uses a string comparison algorithm that relies on the input being sorted. In this use case, this is drastically faster than the commonly used [Levenshtein distance](https://en.wikipedia.org/wiki/Levenshtein_distance) for computing string differences. This library initially tried Levenshtein distance libraries, but on tested code bases, those algorithms took anywhere from 30 minutes to hours. The current algorithm takes less than 5 minutes on the same code bases.
+
+```sh
+# Using react's git repo: https://github.com/facebook/react/
+time npx file-similarity --output similarity.json
+
+real	0m56.109s
+user	0m45.827s
+sys	0m1.381s
 ```
 
 Contributing
