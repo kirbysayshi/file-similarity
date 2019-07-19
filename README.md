@@ -1,7 +1,15 @@
 file-similarity
 ==============
 
-Score files within a directory based on how similar their contents are. Works as a CLI tool or library! Uses an algorithm similar to [`comm`](https://linux.die.net/man/1/comm) for speed.
+Score files within a directory based on how similar their contents are. Works as a CLI tool or library! Uses an algorithm similar to [`comm`](https://linux.die.net/man/1/comm) for speed, which is drastically faster than the commonly used [Levenshtein distance](https://en.wikipedia.org/wiki/Levenshtein_distance).
+
+```sh
+time npx file-similarity --output similarity.json
+
+real	0m56.109s
+user	0m45.827s
+sys	0m1.381s
+```
 
 Usage (library)
 -----------
