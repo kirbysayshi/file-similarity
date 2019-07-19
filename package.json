@@ -26,8 +26,12 @@
   },
   "devDependencies": {
     "@spotify/web-scripts": "^1.1.4",
+    "@types/glob": "^7.1.1",
     "@types/mock-fs": "^3.6.30",
     "husky": "^3.0.0",
     "mock-fs": "^4.10.1"
+  },
+  "dependencies": {
+    "glob": "^7.1.4"
   }
 }
