@@ -94,7 +94,7 @@ Global Options
 
   if (argv.indexOf('--help') > -1) {
     console.error(help);
-    process.exit(1);
+    process.exit(0);
   }
 
   return args;
