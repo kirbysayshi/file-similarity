@@ -7,6 +7,8 @@ Use this tool to determine where, in your large code base, there might be excess
 
 Scores are between `0` (no lines match between the files) and `1` (lines, after normalization, completely match). When comparing files, this tool normalizes each line by trimming whitespace, removing empty lines, and sorting. This means that two files _could_ receive a score of `1` (completely equal) but have differing whitespace or line order. Generally this isn't a problem.
 
+The CLI defaults are geared towards JS/TS projects, but this tool is language agnostic: it only cares about lines in files.
+
 Usage (library)
 -----------
 
